@@ -10,8 +10,28 @@ namespace QuanLyQuanCafe.DAO
 {
     public class DataProvider
     {
-        string connectionSTR = "Data Source=DESKTOP-1VFJKRB;Initial Catalog=QuanLyQuanCafe;Persist Security Info=True;User ID=sa;Password=123456";
+        private static DataProvider instance;
 
+        string connectionSTR = "Data Source=DESKTOP-1VFJKRB;Initial Catalog=QuanLyQuanCafe;Persist Security Info=True;User ID=sa;Password=123456";
+        // Khởi tạo tính đóng gói : Ctrl + R + E
+        public static DataProvider Instance
+        {
+            get
+            {
+                if(instance == null) { instance = new DataProvider(); };
+                return instance;
+            }
+
+            private set
+            {
+                instance = value;
+            }
+        }
+        // Tạo hàm dựng contructor
+        private DataProvider()
+        {
+
+        }
         public DataTable ExecuteQuery(string query,object[] parameter = null)
         {
             DataTable data = new DataTable();

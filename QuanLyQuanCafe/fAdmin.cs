@@ -18,20 +18,21 @@ namespace QuanLyQuanCafe
         {
             InitializeComponent();
             LoadAccountList();
+            LoadFoodList();
         }
 
+        void LoadFoodList()
+        {
+            string query = "SELECT * FROM dbo.Food";
 
+            dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        }
         void LoadAccountList()
         {
-            
-
             //string query = "SELECT UserName as N'Tên tài khoản' FROM dbo.Account";
             string query = "EXEC dbo.USP_GetAccountByUserName @UserName";
 
-            DataProvider provider = new DataProvider();
-            
-
-            dtgvAccount.DataSource = provider.ExecuteQuery(query,new object[] { "staff"});
+            dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query,new object[] { "staff"});
         }
 
         
