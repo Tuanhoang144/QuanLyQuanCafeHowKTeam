@@ -34,25 +34,25 @@
             this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lsvBill = new System.Windows.Forms.ListView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.cbCategory = new System.Windows.Forms.ComboBox();
-            this.cbFood = new System.Windows.Forms.ComboBox();
-            this.btnAddFood = new System.Windows.Forms.Button();
-            this.nmCountFood = new System.Windows.Forms.NumericUpDown();
-            this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCheckOut = new System.Windows.Forms.Button();
-            this.btnDiscount = new System.Windows.Forms.Button();
-            this.nmDiscount = new System.Windows.Forms.NumericUpDown();
-            this.btnSwitchTable = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.cbSwitchTable = new System.Windows.Forms.ComboBox();
+            this.btnSwitchTable = new System.Windows.Forms.Button();
+            this.nmDiscount = new System.Windows.Forms.NumericUpDown();
+            this.btnDiscount = new System.Windows.Forms.Button();
+            this.btnCheckOut = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.nmCountFood = new System.Windows.Forms.NumericUpDown();
+            this.btnAddFood = new System.Windows.Forms.Button();
+            this.cbFood = new System.Windows.Forms.ComboBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmCountFood)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -105,6 +105,14 @@
             this.panel2.Size = new System.Drawing.Size(476, 421);
             this.panel2.TabIndex = 3;
             // 
+            // lsvBill
+            // 
+            this.lsvBill.Location = new System.Drawing.Point(0, 0);
+            this.lsvBill.Name = "lsvBill";
+            this.lsvBill.Size = new System.Drawing.Size(476, 421);
+            this.lsvBill.TabIndex = 0;
+            this.lsvBill.UseCompatibleStateImageBehavior = false;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.cbSwitchTable);
@@ -117,13 +125,54 @@
             this.panel3.Size = new System.Drawing.Size(476, 73);
             this.panel3.TabIndex = 4;
             // 
-            // lsvBill
+            // cbSwitchTable
             // 
-            this.lsvBill.Location = new System.Drawing.Point(0, 0);
-            this.lsvBill.Name = "lsvBill";
-            this.lsvBill.Size = new System.Drawing.Size(476, 421);
-            this.lsvBill.TabIndex = 0;
-            this.lsvBill.UseCompatibleStateImageBehavior = false;
+            this.cbSwitchTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSwitchTable.FormattingEnabled = true;
+            this.cbSwitchTable.Location = new System.Drawing.Point(4, 39);
+            this.cbSwitchTable.Name = "cbSwitchTable";
+            this.cbSwitchTable.Size = new System.Drawing.Size(99, 28);
+            this.cbSwitchTable.TabIndex = 4;
+            // 
+            // btnSwitchTable
+            // 
+            this.btnSwitchTable.Location = new System.Drawing.Point(3, 3);
+            this.btnSwitchTable.Name = "btnSwitchTable";
+            this.btnSwitchTable.Size = new System.Drawing.Size(100, 35);
+            this.btnSwitchTable.TabIndex = 6;
+            this.btnSwitchTable.Text = "Chuyển bàn";
+            this.btnSwitchTable.UseVisualStyleBackColor = true;
+            // 
+            // nmDiscount
+            // 
+            this.nmDiscount.Location = new System.Drawing.Point(191, 45);
+            this.nmDiscount.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nmDiscount.Name = "nmDiscount";
+            this.nmDiscount.Size = new System.Drawing.Size(100, 22);
+            this.nmDiscount.TabIndex = 4;
+            this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnDiscount
+            // 
+            this.btnDiscount.Location = new System.Drawing.Point(191, 6);
+            this.btnDiscount.Name = "btnDiscount";
+            this.btnDiscount.Size = new System.Drawing.Size(100, 35);
+            this.btnDiscount.TabIndex = 5;
+            this.btnDiscount.Text = "Giảm giá";
+            this.btnDiscount.UseVisualStyleBackColor = true;
+            // 
+            // btnCheckOut
+            // 
+            this.btnCheckOut.Location = new System.Drawing.Point(373, 6);
+            this.btnCheckOut.Name = "btnCheckOut";
+            this.btnCheckOut.Size = new System.Drawing.Size(100, 61);
+            this.btnCheckOut.TabIndex = 4;
+            this.btnCheckOut.Text = "Thanh toán";
+            this.btnCheckOut.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -135,35 +184,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(459, 72);
             this.panel4.TabIndex = 5;
-            // 
-            // cbCategory
-            // 
-            this.cbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.ItemHeight = 20;
-            this.cbCategory.Location = new System.Drawing.Point(6, 6);
-            this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(278, 28);
-            this.cbCategory.TabIndex = 0;
-            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // cbFood
-            // 
-            this.cbFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFood.FormattingEnabled = true;
-            this.cbFood.Location = new System.Drawing.Point(6, 39);
-            this.cbFood.Name = "cbFood";
-            this.cbFood.Size = new System.Drawing.Size(278, 28);
-            this.cbFood.TabIndex = 1;
-            // 
-            // btnAddFood
-            // 
-            this.btnAddFood.Location = new System.Drawing.Point(290, 6);
-            this.btnAddFood.Name = "btnAddFood";
-            this.btnAddFood.Size = new System.Drawing.Size(100, 61);
-            this.btnAddFood.TabIndex = 2;
-            this.btnAddFood.Text = "Thêm món";
-            this.btnAddFood.UseVisualStyleBackColor = true;
             // 
             // nmCountFood
             // 
@@ -183,63 +203,41 @@
             0,
             0});
             // 
+            // btnAddFood
+            // 
+            this.btnAddFood.Location = new System.Drawing.Point(290, 6);
+            this.btnAddFood.Name = "btnAddFood";
+            this.btnAddFood.Size = new System.Drawing.Size(100, 61);
+            this.btnAddFood.TabIndex = 2;
+            this.btnAddFood.Text = "Thêm món";
+            this.btnAddFood.UseVisualStyleBackColor = true;
+            // 
+            // cbFood
+            // 
+            this.cbFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFood.FormattingEnabled = true;
+            this.cbFood.Location = new System.Drawing.Point(6, 39);
+            this.cbFood.Name = "cbFood";
+            this.cbFood.Size = new System.Drawing.Size(278, 28);
+            this.cbFood.TabIndex = 1;
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.ItemHeight = 20;
+            this.cbCategory.Location = new System.Drawing.Point(6, 6);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(278, 28);
+            this.cbCategory.TabIndex = 0;
+            // 
             // flpTable
             // 
+            this.flpTable.AutoScroll = true;
             this.flpTable.Location = new System.Drawing.Point(0, 31);
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(604, 578);
             this.flpTable.TabIndex = 6;
-            // 
-            // btnCheckOut
-            // 
-            this.btnCheckOut.Location = new System.Drawing.Point(373, 6);
-            this.btnCheckOut.Name = "btnCheckOut";
-            this.btnCheckOut.Size = new System.Drawing.Size(100, 61);
-            this.btnCheckOut.TabIndex = 4;
-            this.btnCheckOut.Text = "Thanh toán";
-            this.btnCheckOut.UseVisualStyleBackColor = true;
-            // 
-            // btnDiscount
-            // 
-            this.btnDiscount.Location = new System.Drawing.Point(191, 6);
-            this.btnDiscount.Name = "btnDiscount";
-            this.btnDiscount.Size = new System.Drawing.Size(100, 35);
-            this.btnDiscount.TabIndex = 5;
-            this.btnDiscount.Text = "Giảm giá";
-            this.btnDiscount.UseVisualStyleBackColor = true;
-            this.btnDiscount.Click += new System.EventHandler(this.btnDiscount_Click);
-            // 
-            // nmDiscount
-            // 
-            this.nmDiscount.Location = new System.Drawing.Point(191, 45);
-            this.nmDiscount.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nmDiscount.Name = "nmDiscount";
-            this.nmDiscount.Size = new System.Drawing.Size(100, 22);
-            this.nmDiscount.TabIndex = 4;
-            this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nmDiscount.ValueChanged += new System.EventHandler(this.nmDiscount_ValueChanged);
-            // 
-            // btnSwitchTable
-            // 
-            this.btnSwitchTable.Location = new System.Drawing.Point(3, 3);
-            this.btnSwitchTable.Name = "btnSwitchTable";
-            this.btnSwitchTable.Size = new System.Drawing.Size(100, 35);
-            this.btnSwitchTable.TabIndex = 6;
-            this.btnSwitchTable.Text = "Chuyển bàn";
-            this.btnSwitchTable.UseVisualStyleBackColor = true;
-            // 
-            // cbSwitchTable
-            // 
-            this.cbSwitchTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSwitchTable.FormattingEnabled = true;
-            this.cbSwitchTable.Location = new System.Drawing.Point(4, 39);
-            this.cbSwitchTable.Name = "cbSwitchTable";
-            this.cbSwitchTable.Size = new System.Drawing.Size(99, 28);
-            this.cbSwitchTable.TabIndex = 4;
             // 
             // fTableManager
             // 
@@ -259,9 +257,9 @@
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmCountFood)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

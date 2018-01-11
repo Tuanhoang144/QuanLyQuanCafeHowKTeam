@@ -55,11 +55,12 @@
             // 
             // btnExit
             // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(330, 166);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(154, 44);
-            this.btnExit.TabIndex = 4;
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -70,7 +71,7 @@
             this.btnLogin.Location = new System.Drawing.Point(154, 166);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(154, 44);
-            this.btnLogin.TabIndex = 3;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -82,7 +83,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 83);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(553, 77);
-            this.panel3.TabIndex = 0;
+            this.panel3.TabIndex = 1;
             // 
             // txtbPassWord
             // 
