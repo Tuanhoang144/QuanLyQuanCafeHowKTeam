@@ -31,7 +31,7 @@ namespace QuanLyQuanCafe.DAO
         public List<Menu> GetListMenuByTable(int idTable)
         {
             List<Menu> lstMenu = new List<Menu>();
-            string query = "SELECT f.name,bi.count,f.price,f.price*bi.count AS totalPrice FROM dbo.Bill AS b, dbo.BillInfo AS bi,dbo.Food AS f WHERE b.id = bi.idBill AND bi.idFood = f.id AND b.idTable = '" + idTable +"'";
+            string query = "SELECT f.name,bi.count,f.price,f.price*bi.count AS totalPrice FROM dbo.Bill AS b, dbo.BillInfo AS bi,dbo.Food AS f WHERE b.id = bi.idBill AND bi.idFood = f.id AND b.status='0' AND b.idTable = '" + idTable +"'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
 
             foreach(DataRow item in data.Rows)
