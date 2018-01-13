@@ -27,6 +27,8 @@ namespace QuanLyQuanCafe
             {
                 Button button = new Button() { Width = TableDAO.tableWidth, Height = TableDAO.tableHeight };
                 button.Text = item.Name + Environment.NewLine + item.Status;
+                button.Click += Button_Click1;
+                button.Tag = item;
                 switch (item.Status)
                 {
                     case "Trống":
@@ -39,10 +41,33 @@ namespace QuanLyQuanCafe
                 flpTable.Controls.Add(button);
             }
         }
+        void ShowBill(int tableID)
+        {
+            lsvBill.Items.Clear();
+            List<DTO.Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(tableID);
+            foreach(DTO.Menu item in listBillInfo)
+            {
+                ListViewItem lsvItem = new ListViewItem(item.FoodName.ToString());
+                lsvItem.SubItems.Add(item.Count.ToString());
+                lsvItem.SubItems.Add(item.Price.ToString());
+                lsvItem.SubItems.Add(item.TotalPrice.ToString());
+
+                lsvBill.Items.Add(lsvItem);
+            }
+
+            
+        }
+
 
         #endregion
 
         #region Events
+        private void Button_Click1(object sender, EventArgs e)
+        {
+            int tableID = (((sender as Button).Tag) as Table).Id;
+            ShowBill(tableID);
+        }
+
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
