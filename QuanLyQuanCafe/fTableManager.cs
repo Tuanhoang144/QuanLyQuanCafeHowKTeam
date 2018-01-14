@@ -21,6 +21,8 @@ namespace QuanLyQuanCafe
             InitializeComponent();
             LoadTable();
             LoadCategory();
+            //lsvBill.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //lsvBill.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         #region Methods
         void LoadCategory()
@@ -86,6 +88,8 @@ namespace QuanLyQuanCafe
         private void Button_Click1(object sender, EventArgs e)
         {
             int tableID = (((sender as Button).Tag) as Table).Id;
+            // Lấy dữ liệu bàn gán vào lsvFood
+            lsvBill.Tag = (sender as Button).Tag;
             ShowBill(tableID);
         }
 
@@ -105,7 +109,6 @@ namespace QuanLyQuanCafe
             fAdmin f = new fAdmin();
             f.ShowDialog();
         }
-        #endregion
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -116,5 +119,34 @@ namespace QuanLyQuanCafe
             id = selected.ID;
             LoadFoodListByCategoryID(id);
         }
+
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+
+            int idBill = BillDAO.Instance.GetUnCheckBillGetByID(table.Id);
+            int idFood = (cbFood.SelectedItem as Food).ID;
+            int count = (int)nmCountFood.Value;
+
+            // nếu bàn không có bill thì tạo bill mới cho bàn đó
+            if(idBill == -1)
+            {
+                BillDAO.Instance.InsertBill(table.Id);
+                // Thêm BillInfo
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(), idFood, count);
+
+            }
+
+            else
+            {
+                BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
+            }
+            ShowBill(table.Id);
+        }
+
+
+        #endregion
+
+
     }
 }
