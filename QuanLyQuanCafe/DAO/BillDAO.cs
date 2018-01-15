@@ -28,6 +28,12 @@ namespace QuanLyQuanCafe.DAO
 
         private BillDAO() { }
 
+        public void CheckOut(int idBill)
+        {
+            string query = "UPDATE dbo.Bill SET status= 1,DateCheckOut =GETDATE() WHERE id = '" + idBill + "'";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
          public int GetUnCheckBillGetByID(int idTable)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Bill WHERE idTable = '"+idTable+"' AND status = '0'");

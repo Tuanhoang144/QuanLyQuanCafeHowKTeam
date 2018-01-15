@@ -41,6 +41,7 @@ namespace QuanLyQuanCafe
 
         void LoadTable()
         {
+            flpTable.Controls.Clear();
             List<Table> tableList = TableDAO.Instance.LoadTableList();
             foreach(Table item in tableList)
             {
@@ -142,6 +143,25 @@ namespace QuanLyQuanCafe
                 BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
             }
             ShowBill(table.Id);
+            LoadTable();
+        }
+
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+
+            int idBill = BillDAO.Instance.GetUnCheckBillGetByID(table.Id);
+
+            if(idBill != -1)
+            {
+                if(MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + table.Name + " ?","Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                {
+                    BillDAO.Instance.CheckOut(idBill);
+                    // Sau khi thanh toán thì Show lại bill --> đã chuyển status về 1 nên không hiện chi tiết bill
+                    ShowBill(table.Id);
+                    LoadTable();
+                }
+            }
         }
 
 
