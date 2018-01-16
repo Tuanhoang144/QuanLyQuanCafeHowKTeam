@@ -28,9 +28,9 @@ namespace QuanLyQuanCafe.DAO
 
         private BillDAO() { }
 
-        public void CheckOut(int idBill)
+        public void CheckOut(int idBill,int discount)
         {
-            string query = "UPDATE dbo.Bill SET status= 1,DateCheckOut =GETDATE() WHERE id = '" + idBill + "'";
+            string query = "UPDATE dbo.Bill SET status= 1,DateCheckOut =GETDATE(),discount=" + discount + "  WHERE id = '" + idBill + "'";
             DataProvider.Instance.ExecuteNonQuery(query);
         }
 

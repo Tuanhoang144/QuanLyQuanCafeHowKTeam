@@ -151,12 +151,14 @@ namespace QuanLyQuanCafe
             Table table = lsvBill.Tag as Table;
 
             int idBill = BillDAO.Instance.GetUnCheckBillGetByID(table.Id);
-
-            if(idBill != -1)
+            int discount = (int)nmDiscount.Value;
+            double totalPrice = double.Parse(txbTotalPrice.Text, NumberStyles.Currency);
+            double finalTotalPrice = totalPrice - (totalPrice/100) * discount;
+            if (idBill != -1)
             {
-                if(MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + table.Name + " ?","Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                if(MessageBox.Show(string.Format("Bạn có chắc muốn thanh toán hóa đơn cho {0} ?\n Tổng tiền - (Tổng tiền /100) * discount = {1} - ({1}/100)*{2} = {3}",table.Name,totalPrice,discount,finalTotalPrice),"Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
-                    BillDAO.Instance.CheckOut(idBill);
+                    BillDAO.Instance.CheckOut(idBill,discount);
                     // Sau khi thanh toán thì Show lại bill --> đã chuyển status về 1 nên không hiện chi tiết bill
                     ShowBill(table.Id);
                     LoadTable();
