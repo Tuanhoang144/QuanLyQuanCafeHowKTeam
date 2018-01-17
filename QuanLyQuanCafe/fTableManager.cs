@@ -23,6 +23,7 @@ namespace QuanLyQuanCafe
             LoadCategory();
             //lsvBill.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             //lsvBill.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            LoadComboBoxTable(cbSwitchTable);
         }
         #region Methods
         void LoadCategory()
@@ -61,6 +62,12 @@ namespace QuanLyQuanCafe
                 flpTable.Controls.Add(button);
             }
         }
+        void LoadComboBoxTable(ComboBox cb)
+        {
+            cb.DataSource = TableDAO.Instance.LoadTableList();
+            cb.DisplayMember = "Name";
+        }
+
         void ShowBill(int tableID)
         {
             lsvBill.Items.Clear();
@@ -156,7 +163,7 @@ namespace QuanLyQuanCafe
             double finalTotalPrice = totalPrice - (totalPrice/100) * discount;
             if (idBill != -1)
             {
-                if(MessageBox.Show(string.Format("Bạn có chắc muốn thanh toán hóa đơn cho {0} ?\n Tổng tiền - (Tổng tiền /100) * discount = {1} - ({1}/100)*{2} = {3}",table.Name,totalPrice,discount,finalTotalPrice),"Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                if(MessageBox.Show(string.Format("Bạn có chắc muốn thanh toán hóa đơn cho {0} ?\n Tổng tiền - (Tổng tiền /100) * Giảm giá = {1} - ({1}/100)*{2} = {3}",table.Name,totalPrice,discount,finalTotalPrice),"Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     BillDAO.Instance.CheckOut(idBill,discount);
                     // Sau khi thanh toán thì Show lại bill --> đã chuyển status về 1 nên không hiện chi tiết bill
@@ -166,6 +173,20 @@ namespace QuanLyQuanCafe
             }
         }
 
+        private void btnSwitchTable_Click(object sender, EventArgs e)
+        {
+            int id1 = (lsvBill.Tag as Table).Id;
+            int id2 = (cbSwitchTable.SelectedItem as Table).Id;
+
+            if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển {0} sang {1} không ?", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name),"Thông báo",MessageBoxButtons.OKCancel)==System.Windows.Forms.DialogResult.OK)
+            {
+                TableDAO.Instance.SwitchTable(id1, id2);
+
+                LoadTable();
+            }
+
+            
+        }
 
         #endregion
 
