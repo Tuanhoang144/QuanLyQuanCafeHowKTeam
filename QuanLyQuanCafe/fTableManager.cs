@@ -165,7 +165,7 @@ namespace QuanLyQuanCafe
             {
                 if(MessageBox.Show(string.Format("Bạn có chắc muốn thanh toán hóa đơn cho {0} ?\n Tổng tiền - (Tổng tiền /100) * Giảm giá = {1} - ({1}/100)*{2} = {3}",table.Name,totalPrice,discount,finalTotalPrice),"Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
-                    BillDAO.Instance.CheckOut(idBill,discount);
+                    BillDAO.Instance.CheckOut(idBill,discount,(float)finalTotalPrice);
                     // Sau khi thanh toán thì Show lại bill --> đã chuyển status về 1 nên không hiện chi tiết bill
                     ShowBill(table.Id);
                     LoadTable();

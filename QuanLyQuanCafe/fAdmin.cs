@@ -17,24 +17,26 @@ namespace QuanLyQuanCafe
         public fAdmin()
         {
             InitializeComponent();
-            LoadAccountList();
-            LoadFoodList();
+            LoadDateTimePickerBill();
+            LoadBillListByDate(dtpkFromDate.Value, dtpkToDate.Value);
+            
         }
 
-        void LoadFoodList()
+        void LoadDateTimePickerBill()
         {
-            string query = "SELECT * FROM dbo.Food";
-
-            dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            DateTime today = DateTime.Now;
+            dtpkFromDate.Value = new DateTime(today.Year, today.Month, 1);
+            dtpkToDate.Value = dtpkFromDate.Value.AddMonths(1).AddDays(-1);
         }
-        void LoadAccountList()
+
+        void LoadBillListByDate(DateTime from,DateTime to)
         {
-            //string query = "SELECT UserName as N'Tên tài khoản' FROM dbo.Account";
-            string query = "EXEC dbo.USP_GetAccountByUserName @UserName";
-
-            dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query,new object[] { "staff"});
+            dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(from,to);
         }
 
-        
+        private void btnViewBill_Click(object sender, EventArgs e)
+        {
+            LoadBillListByDate(dtpkFromDate.Value, dtpkToDate.Value);
+        }
     }
 }
