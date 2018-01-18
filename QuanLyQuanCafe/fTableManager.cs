@@ -16,9 +16,28 @@ namespace QuanLyQuanCafe
 {
     public partial class fTableManager : Form
     {
-        public fTableManager()
+        private Account loginAccount;
+
+        public Account LoginAccount
+        {
+            get
+            {
+                return loginAccount;
+            }
+
+            set
+            {
+                loginAccount = value;
+                ChangeAccount(loginAccount.Type);
+            }
+        }
+
+        public fTableManager(Account acc)
         {
             InitializeComponent();
+
+            this.LoginAccount = acc;
+
             LoadTable();
             LoadCategory();
             //lsvBill.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -26,6 +45,11 @@ namespace QuanLyQuanCafe
             LoadComboBoxTable(cbSwitchTable);
         }
         #region Methods
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1 ? true : false;
+        }
+
         void LoadCategory()
         {
             List<Category> lstCategory = CategoryDAO.Instance.GetListCategory();

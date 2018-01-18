@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCafe.DAO;
+using QuanLyQuanCafe.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,8 @@ namespace QuanLyQuanCafe
 
             if (Login(userName,passWord))
             {
-                fTableManager f = new fTableManager();
+                Account accountLogin = AccountDAO.Instance.GetAccountByUserName(userName);
+                fTableManager f = new fTableManager(accountLogin);
                 this.Hide();
                 f.ShowDialog();
                 this.Show();
