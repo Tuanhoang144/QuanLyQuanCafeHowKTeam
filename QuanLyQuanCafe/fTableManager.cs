@@ -48,6 +48,7 @@ namespace QuanLyQuanCafe
         void ChangeAccount(int type)
         {
             adminToolStripMenuItem.Enabled = type == 1 ? true : false;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
         }
 
         void LoadCategory()
@@ -132,7 +133,7 @@ namespace QuanLyQuanCafe
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccountProfile f = new fAccountProfile();
+            fAccountProfile f = new fAccountProfile(LoginAccount);
             f.ShowDialog();
         }
 
@@ -210,6 +211,11 @@ namespace QuanLyQuanCafe
             }
 
             
+        }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion
