@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuanLyQuanCafe.fAccountProfile;
 
 namespace QuanLyQuanCafe
 {
@@ -134,7 +135,13 @@ namespace QuanLyQuanCafe
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountProfile f = new fAccountProfile(LoginAccount);
+            f.UpdateAccount += F_UpdateAccount;
             f.ShowDialog();
+        }
+        // truyền dữ liệu từ form AccountProfile sang TableManager
+        private void F_UpdateAccount(object sender, AccountEvent e)
+        {
+            thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.DisplayName + ")";
         }
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
