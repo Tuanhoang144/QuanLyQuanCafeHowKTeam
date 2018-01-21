@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCafe.DAO;
+using QuanLyQuanCafe.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,17 +15,21 @@ namespace QuanLyQuanCafe
 {
     public partial class fAdmin : Form
     {
+        BindingSource foodlist = new BindingSource();
         public fAdmin()
         {
             InitializeComponent();
             LoadInitial();
         }
-
+        #region methods
         void LoadInitial()
         {
+            dtgvFood.DataSource = foodlist;
             LoadListFood();
             LoadDateTimePickerBill();
             LoadBillListByDate(dtpkFromDate.Value, dtpkToDate.Value);
+            AddFoodBinding();
+            LoadCategoryIntoComboBox(cbCategory_food);
         }
 
         void LoadDateTimePickerBill()
@@ -41,9 +46,24 @@ namespace QuanLyQuanCafe
 
         void LoadListFood()
         {
-            dtgvFood.DataSource = FoodDAO.Instance.GetListFood();
+            foodlist.DataSource = FoodDAO.Instance.GetListFood();
         }
 
+        void AddFoodBinding()
+        {
+            txtbFoodName.DataBindings.Add(new Binding("Text",dtgvFood.DataSource,"name"));
+            txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "id"));
+            nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "price"));
+        }
+
+        void LoadCategoryIntoComboBox(ComboBox cb)
+        {
+            cb.DataSource = CategoryDAO.Instance.GetListCategory();
+            cb.DisplayMember = "name";
+        }
+        #endregion
+
+        #region events
         private void btnViewBill_Click(object sender, EventArgs e)
         {
             LoadBillListByDate(dtpkFromDate.Value, dtpkToDate.Value);
@@ -52,6 +72,16 @@ namespace QuanLyQuanCafe
         private void btnShowFood_Click(object sender, EventArgs e)
         {
             LoadListFood();
+        }
+        #endregion
+
+        private void txbFoodID_TextChanged(object sender, EventArgs e)
+        {
+            int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IDCategory"].Value;
+
+            Category category = CategoryDAO.Instance.GetCategoryByID(id);
+
+            cbCategory_food.SelectedIndex = category.ID - 1; 
         }
     }
 }

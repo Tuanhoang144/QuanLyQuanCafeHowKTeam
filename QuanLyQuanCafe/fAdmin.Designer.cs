@@ -42,7 +42,7 @@
             this.nmFoodPrice = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbCategory_food = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.txtbFoodName = new System.Windows.Forms.TextBox();
@@ -271,6 +271,11 @@
             // 
             this.nmFoodPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nmFoodPrice.Location = new System.Drawing.Point(193, 6);
+            this.nmFoodPrice.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
             this.nmFoodPrice.Name = "nmFoodPrice";
             this.nmFoodPrice.Size = new System.Drawing.Size(249, 34);
             this.nmFoodPrice.TabIndex = 8;
@@ -288,21 +293,21 @@
             // 
             // panel15
             // 
-            this.panel15.Controls.Add(this.comboBox1);
+            this.panel15.Controls.Add(this.cbCategory_food);
             this.panel15.Controls.Add(this.label6);
             this.panel15.Location = new System.Drawing.Point(3, 109);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(491, 47);
             this.panel15.TabIndex = 11;
             // 
-            // comboBox1
+            // cbCategory_food
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(193, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(249, 37);
-            this.comboBox1.TabIndex = 8;
+            this.cbCategory_food.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCategory_food.FormattingEnabled = true;
+            this.cbCategory_food.Location = new System.Drawing.Point(193, 6);
+            this.cbCategory_food.Name = "cbCategory_food";
+            this.cbCategory_food.Size = new System.Drawing.Size(249, 37);
+            this.cbCategory_food.TabIndex = 8;
             // 
             // label6
             // 
@@ -358,6 +363,7 @@
             this.txbFoodID.ReadOnly = true;
             this.txbFoodID.Size = new System.Drawing.Size(249, 34);
             this.txbFoodID.TabIndex = 8;
+            this.txbFoodID.TextChanged += new System.EventHandler(this.txbFoodID_TextChanged);
             // 
             // label4
             // 
@@ -1072,7 +1078,7 @@
         private System.Windows.Forms.ComboBox cbTypeAccount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbCategory_food;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.TextBox txtbFoodName;
