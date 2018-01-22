@@ -147,7 +147,32 @@ namespace QuanLyQuanCafe
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
+            f.InsertFood += F_InsertFood;
+            f.UpdateFood += F_UpdateFood;
+            f.DeleteFood += F_DeleteFood;
             f.ShowDialog();
+        }
+
+        private void F_DeleteFood(object sender, EventArgs e)
+        {
+            LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+            if(lsvBill.Tag!=null)
+                ShowBill((lsvBill.Tag as Table).Id);
+            LoadTable();
+        }
+
+        private void F_UpdateFood(object sender, EventArgs e)
+        {
+            LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+            if (lsvBill.Tag != null)
+                ShowBill((lsvBill.Tag as Table).Id);
+        }
+
+        private void F_InsertFood(object sender, EventArgs e)
+        {
+            LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+            if (lsvBill.Tag != null)
+                ShowBill((lsvBill.Tag as Table).Id);
         }
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,7 +188,11 @@ namespace QuanLyQuanCafe
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
-
+            if(table == null)
+            {
+                MessageBox.Show("Chọn bàn trước khi thêm món.");
+                return;
+            }
             int idBill = BillDAO.Instance.GetUnCheckBillGetByID(table.Id);
             int idFood = (cbFood.SelectedItem as Food).ID;
             int count = (int)nmCountFood.Value;

@@ -96,15 +96,16 @@ namespace QuanLyQuanCafe
             {
                 LoadListFood();
                 MessageBox.Show("Thêm thành công");
-                
+                if (insertFood != null)
+                {
+                    insertFood(this, new EventArgs());
+                }
             }
             else
             {
                 MessageBox.Show("Có lỗi khi thêm thức ăn");
             }
         }
-
-        #endregion
 
         private void btnUpdateFood_Click(object sender, EventArgs e)
         {
@@ -113,11 +114,15 @@ namespace QuanLyQuanCafe
             float price = (float)nmFoodPrice.Value;
             int id = Convert.ToInt32(txbFoodID.Text);
 
-            if (FoodDAO.Instance.UpdateFood(id,name, categoryID, price))
+            if (FoodDAO.Instance.UpdateFood(id, name, categoryID, price))
             {
-                
+
                 MessageBox.Show("Sửa món thành công");
                 LoadListFood();
+                if (updateFood != null)
+                {
+                    updateFood(this, new EventArgs());
+                }
             }
             else
             {
@@ -133,11 +138,40 @@ namespace QuanLyQuanCafe
             {
                 MessageBox.Show("Xóa món thành công");
                 LoadListFood();
+                if (deleteFood != null)
+                {
+                    deleteFood(this, new EventArgs());
+                }
             }
             else
             {
                 MessageBox.Show("Có lỗi khi xóa thức ăn");
             }
         }
+
+        private event EventHandler insertFood;
+        public event EventHandler InsertFood
+        {
+            add { insertFood += value; }
+            remove { insertFood -= value; }
+        }
+
+        private event EventHandler updateFood;
+        public event EventHandler UpdateFood
+        {
+            add { updateFood += value; }
+            remove { updateFood -= value; }
+        }
+
+        private event EventHandler deleteFood;
+        public event EventHandler DeleteFood
+        {
+            add { deleteFood += value; }
+            remove { deleteFood -= value; }
+        }
+
+        #endregion
+
+
     }
 }
