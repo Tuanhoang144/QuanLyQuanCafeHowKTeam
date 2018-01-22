@@ -63,6 +63,13 @@ namespace QuanLyQuanCafe
             cb.DataSource = CategoryDAO.Instance.GetListCategory();
             cb.DisplayMember = "name";
         }
+
+        List<Food> SearchFoodByName(string name)
+        {
+            List<Food> lstFood = new List<Food>();
+            lstFood = FoodDAO.Instance.SearchFoodByName(name);
+            return lstFood;
+        }
         #endregion
 
         #region events
@@ -79,11 +86,15 @@ namespace QuanLyQuanCafe
 
         private void txbFoodID_TextChanged(object sender, EventArgs e)
         {
-            int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IDCategory"].Value;
+            try
+            {
+                int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IDCategory"].Value;
 
-            Category category = CategoryDAO.Instance.GetCategoryByID(id);
+                Category category = CategoryDAO.Instance.GetCategoryByID(id);
 
-            cbCategory_food.SelectedIndex = category.ID - 1;
+                cbCategory_food.SelectedIndex = category.ID - 1;
+            }
+            catch { }
         }
 
         private void btnAddFood_Click(object sender, EventArgs e)
@@ -170,8 +181,12 @@ namespace QuanLyQuanCafe
             remove { deleteFood -= value; }
         }
 
+
         #endregion
 
-
+        private void btnSearchFood_Click(object sender, EventArgs e)
+        {
+            foodlist.DataSource= SearchFoodByName(txbSearchFoodName.Text);
+        }
     }
 }
